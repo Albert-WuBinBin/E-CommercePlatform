@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <context id="context1" >
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin">  
+            <property name="suppressJavaInterface" value="false" />  
+  	</plugin>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3307/ECommercePlatform?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8" userId="root" password="123456" />
+    <javaModelGenerator targetPackage="com.lgeek.app.dao" targetProject="../E-CommercePlatform/src/main/java" />
+    <sqlMapGenerator targetPackage="mapper" targetProject="../E-CommercePlatform/src/main/resources/" />
+    <javaClientGenerator targetPackage="com.lgeek.app.dao" targetProject="../E-CommercePlatform/src/main/java" type="XMLMAPPER" />
+    <table tableName="user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  </context>
+</generatorConfiguration>

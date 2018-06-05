@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgeek.app.mapper.ShopMapper">
+
+	<!-- <insert id="addProduct">
+	insert into product(p_id ,p_name ,p_describe,p_price ,p_image ,p_stock,p_brand ,ca_id ,s_id)
+	 values(#{p.id},#{p.name},#{p.describe},#{p.price},#{p.image},#{p.stock},#{p.brand},#{ca_id},#{s_id})
+	</insert> -->
+	<insert id="addProduct">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="p.code != null">
+        p_code,
+      </if>
+      <if test="p.name != null">
+        p_name,
+      </if>
+      <if test="p.describe != null">
+        p_describe,
+      </if>
+      <if test="p.model != null">
+        p_model,
+      </if>
+      <if test="p.unit != null">
+        p_unit,
+      </if>
+      <if test="p.untaxPrice != null">
+        p_untaxprice,
+      </if>
+      <if test="p.taxPrice != null">
+        p_taxprice,
+      </if>
+      <if test="p.price != null">
+        p_price,
+      </if>
+      <if test="p.image != null">
+        p_image,
+      </if>
+      <if test="p.stock != null">
+        p_stock,
+      </if>
+      <if test="p.brand != null">
+        p_brand,
+      </if>
+      <if test="p.createTime != null">
+        p_createtime,
+      </if>
+      <if test="p.flag != null">
+        p_flag,
+      </if>
+      <if test="ca_id != null">
+        ca_id,
+      </if>
+      <if test="s_id != null">
+        s_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="p.code != null">
+        #{p.code,jdbcType=VARCHAR},
+      </if>
+      <if test="p.name != null">
+        #{p.name,jdbcType=VARCHAR},
+      </if>
+      <if test="p.describe != null">
+        #{p.describe,jdbcType=VARCHAR},
+      </if>
+      <if test="p.model != null">
+        #{p.model,jdbcType=VARCHAR},
+      </if>
+      <if test="p.unit != null">
+        #{p.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="p.untaxPrice != null">
+        #{p.untaxPrice,jdbcType=REAL},
+      </if>
+      <if test="p.taxPrice != null">
+        #{p.taxPrice,jdbcType=REAL},
+      </if>
+      <if test="p.price != null">
+        #{p.price,jdbcType=REAL},
+      </if>
+      <if test="p.image != null">
+        #{p.image,jdbcType=VARCHAR},
+      </if>
+      <if test="p.stock != null">
+        #{p.stock,jdbcType=INTEGER},
+      </if>
+      <if test="p.brand != null">
+        #{p.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="p.createTime != null">
+        #{p.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="p.flag != null">
+        #{p.flag,jdbcType=TINYINT},
+      </if>
+      <if test="ca_id != null">
+        #{ca_id,jdbcType=INTEGER},
+      </if>
+      <if test="s_id != null">
+        #{s_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+	<update id="updateProduct" parameterType="com.lgeek.app.model.Product">
+	update product set p_name=#{p.name},p_price=#{p.price},p_stock=#{p.stock},p_brand=#{p.brand},ca_id=#{ca_id} where p_id=#{p.id}
+	</update>
+	<update id="updateProduct1" >
+	update product set p_image=#{image} where p_id=#{p_id} 
+	</update>
+	<update id="deleteProduct">
+		update product set p_flag = 0 where p_id=#{p_id}
+	</update>
+	<update id="delivery">
+	update buydetails set bd_delivery=#{delivery} where bd_id=#{id}
+	</update>
+	<update id="delivery1">
+	update product set p_stock=#{stock} where p_id=#{p_id}
+	</update>
+	<select id="getAllCategory" resultMap="getCategoryMap">
+		select * from category  
+	</select>
+	<resultMap type="com.lgeek.app.model.Category" id="getCategoryMap">
+		<id column="ca_id" property="id" />
+		<result column="ca_name" property="name" />
+	</resultMap>
+</mapper>
