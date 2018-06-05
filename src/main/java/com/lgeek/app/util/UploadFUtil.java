@@ -32,8 +32,9 @@ public class UploadFUtil {
 //		if(!uploadFlie.exists()){      
 //			uploadFlie.mkdir();		    
 //		}
-		
-		File targetFile = new File("E://工作目录//商城//E-CommercePlatform//src//main//webapp//images",uploadFileName);
+//		String uploadPath = "E://工作目录//商城//E-CommercePlatform//src//main//webapp//images";
+		String uploadPath = "/usr/local/nginx/static/images";
+		File targetFile = new File(uploadPath,uploadFileName);
 			
 		FileOutputStream fosRef = new FileOutputStream(targetFile);
 		IOUtils.copy(isRef, fosRef);

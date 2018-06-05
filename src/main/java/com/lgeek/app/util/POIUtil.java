@@ -84,59 +84,63 @@ public class POIUtil {
 		 * 					dataKey 列对应的dataList item key
 		 * @param dataList
 		 */
-		public void writeContent(HSSFWorkbook hssfWorkbook,HSSFSheet hssfSheet,int startIndex,
-								List<Map<String,Object>> headInfoList,List<BuyDetails> buyDetails){
-			
-			Map<String, Object> headInfo=null;
-			HSSFRow row;
-			HSSFCell cell;
-			//处理数据
-			BuyDetails details=null;
-			Object v=null;
-			// Sheet样式 
-			HSSFCellStyle cellStyle=hssfWorkbook.createCellStyle();
-			
-			// 设置字体
-			HSSFFont font=hssfWorkbook.createFont();
-			font.setFontHeightInPoints((short)12);// 字体大小
-			//font.setBoldweight(Font.BOLDWEIGHT_BOLD);// 加粗
-			
-			cellStyle.setFont(font);
-			cellStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
-			
-			System.out.println("dataList.size()"+buyDetails.size());
-			  for (int i=0, rownum = startIndex, len = (startIndex + buyDetails.size()); rownum < len; i++,rownum++){    
-				  details = buyDetails.get(i);
-				  row = hssfSheet.createRow(rownum);     
-		            row.setHeightInPoints(16);    
-		           
-//		            for(int j=0, jlen = 10; j < jlen; j++){    
-		                
-		                cell = row.createCell(0);    
-		                cell.setCellValue(details.getProduct().getCode());
-		                cell = row.createCell(1);    
-		                cell.setCellValue(details.getProduct().getName());
-		                cell = row.createCell(2);    
-		                cell.setCellValue(details.getProduct().getDescribe());
-		                cell = row.createCell(3);    
-		                cell.setCellValue(details.getProduct().getModel());
-		                cell = row.createCell(4);    
-		                cell.setCellValue(details.getQuantity());
-		                cell = row.createCell(5);    
-		                cell.setCellValue(details.getProduct().getUntaxPrice());
-		                cell = row.createCell(6);    
-		                cell.setCellValue(details.getProduct().getTaxPrice());
-		                cell = row.createCell(7);    
-		                cell.setCellValue(details.getProduct().getPrice());
-		                cell = row.createCell(8);    
-		                cell.setCellValue(details.getProduct().getCategory().getName());
-		                cell = row.createCell(9);    
-		                cell.setCellValue(details.getCost());
-		                for(int j=0;j<10;j++) {
-		                	 cell = row.getCell(j);
-		                	 cell.setCellStyle(cellStyle);
-		                }  
+		public boolean writeContent(HSSFWorkbook hssfWorkbook,HSSFSheet hssfSheet,int startIndex,
+								List<BuyDetails> buyDetails){
+			try {
+				if(buyDetails==null||buyDetails.isEmpty()) {
+					return false;
+				}
+				HSSFRow row;
+				HSSFCell cell;
+				//处理数据
+				BuyDetails details=null;
+				// Sheet样式 
+				HSSFCellStyle cellStyle=hssfWorkbook.createCellStyle();
+				
+				// 设置字体
+				HSSFFont font=hssfWorkbook.createFont();
+				font.setFontHeightInPoints((short)12);// 字体大小
+				//font.setBoldweight(Font.BOLDWEIGHT_BOLD);// 加粗
+				
+				cellStyle.setFont(font);
+				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
+				  for (int i=0, rownum = startIndex, len = (startIndex + buyDetails.size()); rownum < len; i++,rownum++){    
+					  details = buyDetails.get(i);
+					  row = hssfSheet.createRow(rownum);     
+			            row.setHeightInPoints(16);    
+			           
+//			            for(int j=0, jlen = 10; j < jlen; j++){    
+			                
+			                cell = row.createCell(0);    
+			                cell.setCellValue(details.getProduct().getCode()==null?"":details.getProduct().getCode());
+			                cell = row.createCell(1);    
+			                cell.setCellValue(details.getProduct().getName()==null?"":details.getProduct().getName());
+			                cell = row.createCell(2);    
+			                cell.setCellValue(details.getProduct().getDescribe()==null?"":details.getProduct().getDescribe());
+			                cell = row.createCell(3);    
+			                cell.setCellValue(details.getProduct().getModel()==null?"":details.getProduct().getModel());
+			                cell = row.createCell(4);    
+			                cell.setCellValue(details.getQuantity()==null?null:details.getQuantity());
+			                cell = row.createCell(5);    
+			                cell.setCellValue(details.getProduct().getUntaxPrice()==null?0:details.getProduct().getUntaxPrice());
+			                cell = row.createCell(6);    
+			                cell.setCellValue(details.getProduct().getTaxPrice()==null?0:details.getProduct().getTaxPrice());
+			                cell = row.createCell(7);    
+			                cell.setCellValue(details.getProduct().getPrice()==null?0:details.getProduct().getPrice());
+			                cell = row.createCell(9);    
+			                cell.setCellValue(details.getProduct().getCategory().getName()==null?"":details.getProduct().getCategory().getName());
+			                cell = row.createCell(8);    
+			                cell.setCellValue(details.getCost()==null?0:details.getCost());
+			                for(int j=0;j<10;j++) {
+			                	 cell = row.getCell(j);
+			                	 cell.setCellStyle(cellStyle);
+			                }  
+				}
+				  return true;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			return false;
 		}
 		
 		public void write2FilePath(HSSFWorkbook hssfWorkbook,String filePath)throws Exception{
@@ -179,7 +183,7 @@ public class POIUtil {
 			//3.写入 head    
 			poiUtil.writeHeader(hssfWorkbook, hssfSheet, headInfoList);    
 			//4.写入内容    
-			poiUtil.writeContent(hssfWorkbook, hssfSheet, 1, headInfoList, buyDetails);    
+			poiUtil.writeContent(hssfWorkbook, hssfSheet, 1, buyDetails);    
 			
 			return hssfWorkbook;
 		}
