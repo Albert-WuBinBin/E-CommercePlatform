@@ -8,26 +8,26 @@
         <title>Header Page</title>
         <!--  <script src="jslib/jquery.min.js"></script>-->
 		 <!-- Font Awesome -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="47.98.134.79/css/font-awesome.min.css">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="47.98.134.79/css/owl.carousel.css">
+        <link rel="stylesheet" href="47.98.134.79/style.css">
+        <link rel="stylesheet" href="47.98.134.79/css/responsive.css">
 
           <!-- Bootstrap -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <script src="47.98.134.79/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="47.98.134.79/bootstrap/css/bootstrap.min.css">
 		
         <!--jQuery sticky menu -->
-        <script src="jslib/owl.carousel.min.js"></script>
-        <script src="jslib/jquery.sticky.js"></script>
+        <script src="47.98.134.79/jslib/owl.carousel.min.js"></script>
+        <script src="47.98.134.79/jslib/jquery.sticky.js"></script>
 
         <!--jQuery easing -->
-        <script src="jslib/jquery.easing.1.3.min.js"></script>
+        <script src="47.98.134.79/jslib/jquery.easing.1.3.min.js"></script>
 
 
-        <script src="jslib/main.js"></script>
+        <script src="47.98.134.79/jslib/main.js"></script>
         
         
         <script>

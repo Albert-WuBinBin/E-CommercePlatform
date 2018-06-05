@@ -144,7 +144,7 @@ table {
 						<thead>
 							<tr>
 								<th width="1%">订单号 <br/>${b.orderId}</th>	
-								<td style="position: relative; left: 64%;"><button id="${b.orderId}" class="btn btn-primary">导出</button></td>	
+								<td style="position: relative; left: 64%;"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	
 							</tr>
 						</thead>
 						<c:forEach items="${b.buyDetails}" var="bd">
@@ -171,26 +171,6 @@ table {
     <script type="text/javascript">
     $(function () {
 
-    	var arr = document.getElementsByTagName('button');
-		for(var i = 0;i<arr.length;i++){
-			arr[i].onclick = function(){
-				var orderId = this.id;
-				$.ajax({
-					type:"post",
-					url:"exportOrderToExcel",
-					dataType:"json",
-					data:{orderId:orderId},
-					success:function(result){
-						if(result.msg=="success"){
-							alert("导出成功");
-						}
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						alert("请求错误：" + XMLHttpRequest.status + "\nurl:" + this.url);
-					}
-				});
-			}
-		}
     	$(".btn-search").click(function(){
 			$.ajax({
 				type:"get",

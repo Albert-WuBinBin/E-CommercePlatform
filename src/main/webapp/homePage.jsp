@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>	
-    	<script src="jslib/jquery.min.js"></script>
+    	<script src="47.98.134.79/jslib/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <title>JSP Page</title>
