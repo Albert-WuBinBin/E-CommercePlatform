@@ -154,12 +154,13 @@ public class ShopsService {
 		try {
 			String name = "", code = "", describe = "", model = "", unit = "", ca_name = "", untaxPrice = "",
 					taxPrice = "", price = "";
-			Integer ca_id = null;
+			
 			List<Category> categories = shopMapper.getAllCategory();
 			int rowNum = sheet.getLastRowNum() + 1;
 			for (int i = 1; i < rowNum; i++) {// 从第二行开始读取数据,第一行是表头
 				try {
 					Product product = new Product();
+					Integer ca_id = null;
 					Row row = sheet.getRow(i);// 得到Excel工作表的行
 					int cellNum = row.getLastCellNum();// 取得一行的有效单元格个数
 					for (int j = 0; j < cellNum; j++) {
@@ -235,7 +236,7 @@ public class ShopsService {
 							break;
 						}
 					}
-
+					product.setImage("images/"+i+".png");
 					shopMapper.addProduct(product, ca_id, s_id);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -269,6 +270,7 @@ public class ShopsService {
 		return new String(Base64.encodeBase64(b));
 	}
 
+	@SuppressWarnings("restriction")
 	public static boolean GenerateImage(String imgStr, String name, String extension) {
 		try {
 			if (imgStr == null)
@@ -283,9 +285,8 @@ public class ShopsService {
 					}
 				}
 				// 生成jpeg图片E://工作目录//商城//E-CommercePlatform//src//main//webapp//images//"+name+"."+extension
-				String path = "/usr/local/nginx/static/images";
-				String imgFilePath = path + name + "."
-						+ extension;// 新生成的图片
+				String path = "/usr/local/nginx/static/images/";
+				String imgFilePath = path + name + "."+ extension;// 新生成的图片
 				OutputStream out = new FileOutputStream(imgFilePath);
 				out.write(b);
 				out.flush();
