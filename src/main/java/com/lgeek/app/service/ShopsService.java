@@ -283,7 +283,8 @@ public class ShopsService {
 					}
 				}
 				// 生成jpeg图片E://工作目录//商城//E-CommercePlatform//src//main//webapp//images//"+name+"."+extension
-				String imgFilePath = "E://工作目录//商城//E-CommercePlatform//src//main//webapp//images//shop//" + name + "."
+				String path = "/usr/local/nginx/static/images";
+				String imgFilePath = path + name + "."
 						+ extension;// 新生成的图片
 				OutputStream out = new FileOutputStream(imgFilePath);
 				out.write(b);
