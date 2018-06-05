@@ -158,10 +158,10 @@ public class ShopController {
 	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET)  
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {  
-		List<BuyDetails> list = buyDetailsServiceImpl.getUnfinishedOrdersByOrderId("c682baec877842179937991b7273f639");		
-		HSSFWorkbook wb = shopsService.exportExcel(list);		
+		//List<BuyDetails> list = buyDetailsServiceImpl.getUnfinishedOrdersByOrderId("c682baec877842179937991b7273f639");		
+		HSSFWorkbook wb = shopsService.exportExcel(null);		
 		response.setContentType("application/vnd.ms-excel");    
-	    response.setHeader("Content-disposition", "attachment;filename=Shops.xls");    
+	    response.setHeader("Content-disposition", "attachment;filename=product.xls");    
 	    OutputStream ouputStream = response.getOutputStream();    
 	    wb.write(ouputStream);    
 	    ouputStream.flush();    
@@ -171,8 +171,6 @@ public class ShopController {
 	public String upLoadFile1(@RequestParam(value = "file", required = false)MultipartFile uploadFile,HttpServletRequest request,Model model) throws IOException{
 		File target=UploadFUtil.upLoadFile(uploadFile, request);//文件上传	
 		shopsService.importExcel(target);
-		
-		
 		return "ManageShop";
 }
 	

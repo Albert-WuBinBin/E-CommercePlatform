@@ -1,7 +1,8 @@
 package com.lgeek.app.handler;
 
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -33,6 +35,7 @@ import com.lgeek.app.model.Secretsecurity;
 import com.lgeek.app.model.Shop;
 import com.lgeek.app.model.User;
 import com.lgeek.app.service.ProductService;
+import com.lgeek.app.service.ShopsService;
 import com.lgeek.app.service.UserService;
 import com.lgeek.app.service.impl.BuyDetailsServiceImpl;
 
@@ -529,12 +532,20 @@ public class UserController {
 	}
 	@Resource
 	BuyDetailsServiceImpl buyDetailsServiceImpl;
-	@ResponseBody
-	@RequestMapping(value="/exportOrderToExcel",method=RequestMethod.GET)
-	public String getUnfinishedOrder(Map<String, Object>map) {
+	@Resource
+	ShopsService shopsService;
+
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/exportOrderToExcel", method = RequestMethod.GET)  
+	public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {  
 		String orderId = request.getParameter("orderId");
 		List<BuyDetails> list = buyDetailsServiceImpl.getUnfinishedOrdersByOrderId(orderId);
-		return returnTrue();
+		HSSFWorkbook wb = shopsService.exportExcel(list);		
+		response.setContentType("application/vnd.ms-excel");    
+	    response.setHeader("Content-disposition", "attachment;filename=order.xls");    
+	    OutputStream ouputStream = response.getOutputStream();    
+	    wb.write(ouputStream);    
+	    ouputStream.flush();    
+	    ouputStream.close();  	 
 	}
-	
 }
