@@ -236,7 +236,7 @@ public class ShopsService {
 							break;
 						}
 					}
-					product.setImage("images/"+i+".png");
+					product.setImage("images/"+(i+1)+".png");
 					shopMapper.addProduct(product, ca_id, s_id);
 				} catch (Exception e) {
 					e.printStackTrace();
