@@ -122,7 +122,7 @@ public class POIUtil {
 			for (int i = 0, rownum = startIndex, len = (startIndex + buyDetails.size()); rownum < len; i++, rownum++) {
 				details = buyDetails.get(i);
 				row = hssfSheet.createRow(rownum);
-				row.setHeightInPoints(16);
+				row.setHeightInPoints(50);
 
 				cell = row.createCell(0);
 				cell.setCellValue(details.getProduct().getCode() == null ? "" : details.getProduct().getCode());
@@ -162,7 +162,7 @@ public class POIUtil {
 	             */  
 	            //图片一导出到单元格B2中  
 	            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,  
-	                    (short) i, 10, (short) (i+1), 11);  
+	                    (short) 10, i, (short)11, (i+1));  
 	            // 插入图片  
 	            patriarch.createPicture(anchor, hssfWorkbook.addPicture(byteArrayOut  
 	                    .toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG)); 
