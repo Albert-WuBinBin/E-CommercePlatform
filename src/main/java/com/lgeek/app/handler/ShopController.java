@@ -96,9 +96,10 @@ public class ShopController {
 		return jsonStr;
 	}
 	@RequestMapping(value="/uploadfile",method = RequestMethod.POST)
-	public String upLoadFile(@RequestParam(value = "file", required = false)MultipartFile uploadFile,HttpServletRequest request,Model model) throws IOException{
-		File file=UploadFUtil.upLoadFile(uploadFile,request);
+	public String upLoadFile(@RequestParam(value = "file", required = false)MultipartFile uploadFile,HttpServletRequest request) throws IOException{
+		String type = request.getParameter("type");
 		String p_id=request.getParameter("p_id");
+		File file=UploadFUtil.upLoadFile(uploadFile,Integer.parseInt(type));		
 		String image="images/"+file.getName();
 		shopMapper.updateProduct1(p_id, image);
 		return "ManageShop";
@@ -168,8 +169,8 @@ public class ShopController {
 	    ouputStream.close();  	 
 	}	 
 	@RequestMapping(value="/importExcel",method = RequestMethod.POST)
-	public String upLoadFile1(@RequestParam(value = "file", required = false)MultipartFile uploadFile,HttpServletRequest request,Model model) throws IOException{
-		File target=UploadFUtil.upLoadFile(uploadFile, request);//文件上传	
+	public String upLoadFile1(@RequestParam(value = "file", required = false)MultipartFile uploadFile,HttpServletRequest request) throws IOException{
+		File target=UploadFUtil.upLoadFile(uploadFile,2);//文件上传	
 		shopsService.importExcel(target);
 		return "ManageShop";
 }

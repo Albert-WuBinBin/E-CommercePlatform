@@ -333,6 +333,7 @@
 							<div class="col-sm-9">
 
 								<input type="text" name="p_id" style="display: none;" id="p_id" />
+								<input type="hidden" name="type" value="1"/>
 								<input type="file" id="imagefile" name="file"
 									class="file-loading" />
 								<p style="color: red;">***:只允许上传jpg,jpeg，png图片
@@ -368,9 +369,10 @@
 							<div class="col-sm-9">
 
 								<input type="text" name="p_id" style="display: none;" id="p_id" />
+								<input type="hidden" name="type" value="2"/>
 								<input type="file" id="pdffile" name="file"
 									class="file-loading" />
-								<p style="color: red;">***:只允许上传jpg,jpeg，png图片
+								<p style="color: red;">
 								<p>
 									<input type="submit" class="btn btn-primary btn-pdf-upload" />
 							</div>

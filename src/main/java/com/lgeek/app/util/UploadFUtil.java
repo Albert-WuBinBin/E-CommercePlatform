@@ -15,27 +15,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 @Service
 public class UploadFUtil {
-	
-	public static File upLoadFile(MultipartFile uploadFile,HttpServletRequest request) throws IOException{
-		request.setCharacterEncoding("UTF-8");
+	/**
+	 * 
+	 * @param uploadFile
+	 * @param type 1图片2文档
+	 * @return
+	 * @throws IOException
+	 */
+	public static File upLoadFile(MultipartFile uploadFile,int type) throws IOException{
+		String uploadPath = "";
+		if(type==1) {
+			uploadPath = "/usr/local/nginx/static/images";
+		}
+		else {
+			uploadPath = "/usr/local/nginx/static/file";
+		}
+		File uploadFlie = new File(uploadPath);
+		if(!uploadFlie.exists()){      
+			uploadFlie.mkdir();		    
+		}
 		MultipartFile file = uploadFile;
-		@SuppressWarnings("unused")
 		String uploadFileName = file.getOriginalFilename();
-		
-		System.out.println("uploadFileName"+uploadFileName);
 		InputStream isRef = file.getInputStream();
-
-//		String targetDir = request.getSession().getServletContext().getRealPath("/upload");
-//		
-//		System.out.println(targetDir+uploadFileName);
-//		File uploadFlie = new File(targetDir);
-//		if(!uploadFlie.exists()){      
-//			uploadFlie.mkdir();		    
-//		}
-//		String uploadPath = "E://工作目录//商城//E-CommercePlatform//src//main//webapp//images";
-		String uploadPath = "/usr/local/nginx/static/images";
 		File targetFile = new File(uploadPath,uploadFileName);
-			
 		FileOutputStream fosRef = new FileOutputStream(targetFile);
 		IOUtils.copy(isRef, fosRef);
 		return targetFile;
