@@ -82,25 +82,25 @@ public class ShopsService {
 
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "未税单价");
-		itemMap.put("columnWidth", 15);
+		itemMap.put("columnWidth", 20);
 		itemMap.put("dataKey", "XH6");
 		headInfoList.add(itemMap);
 		
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "含税单价");
-		itemMap.put("columnWidth", 15);
+		itemMap.put("columnWidth", 20);
 		itemMap.put("dataKey", "XH7");
 		headInfoList.add(itemMap);
 		
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "市场价格");
-		itemMap.put("columnWidth", 15);
+		itemMap.put("columnWidth", 20);
 		itemMap.put("dataKey", "XH8");
 		headInfoList.add(itemMap);
 			
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "消费金额");
-		itemMap.put("columnWidth", 15);
+		itemMap.put("columnWidth", 20);
 		itemMap.put("dataKey", "XH9");
 		headInfoList.add(itemMap);
 		

@@ -113,8 +113,10 @@ public class POIUtil {
 			// font.setBoldweight(Font.BOLDWEIGHT_BOLD);// 加粗
 
 			cellStyle.setFont(font);
-			cellStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
+			//cellStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
 			//cellStyle.setAlignment(CellStyle.VERTICAL_CENTER);
+			cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中 
+			cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
 			BufferedImage bufferImg = null;
 			HSSFPatriarch patriarch = hssfSheet.createDrawingPatriarch(); 
 			
@@ -145,8 +147,8 @@ public class POIUtil {
 				cell = row.createCell(9);
 				cell.setCellValue(details.getProduct().getCategory().getName() == null ? ""
 						: details.getProduct().getCategory().getName());
-				 ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream(); 
-				 String imagePath = "/usr/local/nginx/static/"+details.getProduct().getImage();
+				ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream(); 
+				String imagePath = "/usr/local/nginx/static/"+details.getProduct().getImage();
 				bufferImg = ImageIO.read(new File(imagePath));    
 	            ImageIO.write(bufferImg, "jpeg", byteArrayOut);  
 	            
@@ -160,7 +162,7 @@ public class POIUtil {
 	             *  
 	             */  
 	            //图片一导出到单元格B2中  
-	            HSSFClientAnchor anchor = new HSSFClientAnchor(5, 5, 5, 5,  
+	            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,  
 	                    (short) 10, rownum, (short)11, (rownum+1));  
 	            // 插入图片  
 	            patriarch.createPicture(anchor, hssfWorkbook.addPicture(byteArrayOut  
