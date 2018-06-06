@@ -17,12 +17,8 @@
         %>
         <ul>
             <li><h1>菜单</h1></li>
-            <li><a href="viewPersonalInformation.jsp" target="ContentFrame">查看个人信息</a></li>
-            <li><a href="modifyPersonalInformation.jsp" target="ContentFrame">修改个人信息</a></li>
             <li><a href="changePassword.jsp" target="ContentFrame">修改密码</a></li>
             <li><a href="secretSecuritySettings.jsp" target="ContentFrame">设置密保</a></li> 
-            <!--            <li><a href="uppradeVip.jsp" target="ContentFrame">Upgrade vip</a></li>  -->
-                        <li><a href="receiptAddress.jsp" target="ContentFrame">收货地址</a></li> 
             <li><a href="myOrder.jsp" target="ContentFrame">我的订单</a></li> 
             <!--            <li><a href="ViewPersonalFine.jsp" target="ContentFrame" >View Personal Fine</a></li>-->
             <li><a href="setUpShop.jsp" target="ContentFrame">管理店铺</a></li>

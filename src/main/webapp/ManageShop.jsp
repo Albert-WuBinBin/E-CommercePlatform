@@ -32,6 +32,9 @@
 			allowedFileExtensions : [ 'jpg', 'jpeg', "png" ],
 
 		});
+		$("#pdffile").fileinput({
+			language : 'zh'
+		});
 		$(".btn-submit1").click(function() {
 			var file = $("#excelfile").val();
 			if (file.length == 0) {
@@ -45,6 +48,14 @@
 			if (file.length == 0) {
 				alert("请选择一个上传文件")
 				$("#imagefile").focus();
+				return false;
+			}
+		})
+		$(".btn-pdf-upload").click(function() {
+			var file = $("#pdffile").val();
+			if (file.length == 0) {
+				alert("请选择一个上传文件")
+				$("#pdffile").focus();
 				return false;
 			}
 		})
@@ -327,6 +338,41 @@
 								<p style="color: red;">***:只允许上传jpg,jpeg，png图片
 								<p>
 									<input type="submit" class="btn btn-primary btn-upload" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="pdfUploadModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">上传文档</h4>
+				</div>
+
+				<div class="modal-body">
+					<form class="form-horizontal" action="uploadfile" method="post"
+						enctype="multipart/form-data">
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 图片<span
+								class="glyphicon glyphicon-star" style="color: red;"></span>
+							</label>
+							<div class="col-sm-9">
+
+								<input type="text" name="p_id" style="display: none;" id="p_id" />
+								<input type="file" id="pdffile" name="file"
+									class="file-loading" />
+								<p style="color: red;">***:只允许上传jpg,jpeg，png图片
+								<p>
+									<input type="submit" class="btn btn-primary btn-pdf-upload" />
 							</div>
 						</div>
 					</form>

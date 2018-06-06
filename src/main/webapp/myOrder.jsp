@@ -134,7 +134,7 @@ table {
 							<td width="25%">图片</td>
 							<td width="20%">名字</td>
 							<td width="15%">单位</td>
-							<td width="20%">价格</td>
+							<td width="20%">购买金额</td>
 							<td width="20%">日期</td>
 						</tr>
 					</table>	
