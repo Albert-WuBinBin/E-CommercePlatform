@@ -189,9 +189,11 @@ public class CartController {
 		String orderId = request.getParameter("orderId");
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-
+		String u_id = (String) request.getSession().getAttribute("id");
 		if (password.equalsIgnoreCase((String) request.getSession().getAttribute("password"))) {
 			buyDetailsServiceImpl.payment(name, orderId);
+			Object unfinishedOrders = buyDetailsServiceImpl.getUnfinishedOrdersByUid(u_id);
+			request.getSession().setAttribute("buyDetails", unfinishedOrders);
 			map.put("message", "支付成功");
 		} else {
 			map.put("message", "密码错误，请输入正确的密码！！！");

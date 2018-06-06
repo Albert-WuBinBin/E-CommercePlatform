@@ -91,7 +91,7 @@
                                 </div>
                                 <h2><a href="showDetails?p_id=${product.id}">${product.name}</a></h2>
                                 <div class="product-carousel-price">
-                                    <ins>${product.price}</ins> <del></del>
+                                    <ins>${product.price}</ins> <ins>${product.brand}</ins>
                                 </div>  
 
                                 <div class="product-option-shop">

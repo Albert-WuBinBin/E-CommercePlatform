@@ -210,7 +210,7 @@ public class UserController {
 		System.out.println(p_id);
 		List<Product> product = productMapper.getProduct(p_id);
 		System.out.println(product);
-		map.put("details", product);
+		map.put("product", product);
 		map.put("p_id", p_id);
 		return "showDetails";
 	}

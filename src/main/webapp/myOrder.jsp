@@ -143,7 +143,7 @@ table {
 						<thead>
 							<tr>
 								<th width="25%">订单号&nbsp;&nbsp; ${b.orderId}</th>	
-								<th width="20%">项目名字:一刻间</th>
+								<th width="20%">项目名字:${b.projectName}</th>
 								<td style="position: relative;left:40%;"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	
 							</tr>
 						</thead>

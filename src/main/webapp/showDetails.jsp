@@ -44,18 +44,21 @@
 <body>
 
 	<jsp:include page="header.jsp" />
-	<c:forEach items="${details}" var="d">
+	<c:forEach items="${product}" var="p">
 		<div style="position: relative; left: 150px; top: 100px">
-				<img src="${d.image}" height="450" width="450"/>
+				<img src="${p.image}" height="300" width="300"/>
 		</div>
 
 		<div id=""
 			style="position: absolute; width: 418px; height: 418px; left: 700px; top: 230px">
-			<font size="4" color="black"> ${d.name} </font>
-
+			<font size="4" color="black">商品名字: ${p.name} </font><br />	<br /> <br /> 
+			<font size="4" color="black"> 商品描述:${p.describe} </font><br /><br/>
+			<font size="4" color="black"> 规格型号:${p.model} </font><br /> 
 			<div id=""
-				style="position: relative; background-color: #ffcccc; top: 50px;">
-				<br /> <font size="4" color="red"> 促销价:￥${d.price} </font>
+				style="position: relative; top: 30px;">
+				<font size="4" color="black"> 未税价:￥${p.untaxPrice} </font><br /> 
+				<font size="4" color="black"> 含税价:￥${p.taxPrice} </font><br /> 
+				<font size="4" color="black"> 市场价:￥${p.price} </font><br /> 
 			</div>
 			<div style="position: relative; top: 100px;">
 				数量:
@@ -67,7 +70,6 @@
 					style="width: 60px; height: 40px; font-size: 20px; top: 20px;" />
 				<button type="button" class="btn btn-default"
 					style="width: 40px; height: 40px; font-size: 20px;" onclick="add()">+</button>
-				(库存 ${d.stock})
 			</div>
 			<div style="position: relative; top: 200px;">
 				<a href=""><button type="submit"
@@ -77,7 +79,7 @@
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-				<a href="addToCart?p_id=${d.id}"><button type="submit"
+				<a href="addToCart?p_id=${p.id}"><button type="submit"
 					style="background: #ff3333; color: #ffffff; width: 120px; height: 50px;">
 					加入购物车
 				</button></a>

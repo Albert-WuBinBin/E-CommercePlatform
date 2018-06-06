@@ -48,6 +48,7 @@ public class BuyDetailsServiceImpl implements BuyDetailsService{
 					}
 				}
 				jsonObject.put("orderId", orderId);
+				jsonObject.put("projectName", details.get(0).getRequest());
 				jsonObject.put("buyDetails", details);
 				jsonArray.add(jsonObject);
 			}
