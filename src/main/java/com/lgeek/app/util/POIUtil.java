@@ -116,13 +116,14 @@ public class POIUtil {
 
 			cellStyle.setFont(font);
 			cellStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
+			cellStyle.setAlignment(CellStyle.VERTICAL_CENTER);
 			BufferedImage bufferImg = null;
 			HSSFPatriarch patriarch = hssfSheet.createDrawingPatriarch(); 
 			
 			for (int i = 0, rownum = startIndex, len = (startIndex + buyDetails.size()); rownum < len; i++, rownum++) {
 				details = buyDetails.get(i);
 				row = hssfSheet.createRow(rownum);
-				row.setHeightInPoints(50);
+				row.setHeightInPoints(30);
 
 				cell = row.createCell(0);
 				cell.setCellValue(details.getProduct().getCode() == null ? "" : details.getProduct().getCode());
@@ -161,12 +162,12 @@ public class POIUtil {
 	             *  
 	             */  
 	            //图片一导出到单元格B2中  
-	            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,  
+	            HSSFClientAnchor anchor = new HSSFClientAnchor(5, 5, 5, 5,  
 	                    (short) 10, rownum, (short)11, (rownum+1));  
 	            // 插入图片  
 	            patriarch.createPicture(anchor, hssfWorkbook.addPicture(byteArrayOut  
 	                    .toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG)); 
-				for (int j = 0; j < 11; j++) {
+				for (int j = 0; j < 10; j++) {
 					cell = row.getCell(j);
 					cell.setCellStyle(cellStyle);
 				}
