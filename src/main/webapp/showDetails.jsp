@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>淘宝</title>
+<title>商品详情</title>
 <link rel="stylesheet" type="text/css" href="css/fangdajing.css">
 <script type="text/javascript"  src="jslib/jquery.min.js"></script>
 <script type="text/javascript"  src="jslib/jquery.colorbox-min.js"></script>
@@ -53,7 +53,8 @@
 			style="position: absolute; width: 418px; height: 418px; left: 700px; top: 230px">
 			<font size="4" color="black">商品名字: ${p.name} </font><br />	<br /> <br /> 
 			<font size="4" color="black"> 商品描述:${p.describe} </font><br /><br/>
-			<font size="4" color="black"> 规格型号:${p.model} </font><br /> 
+			<font size="4" color="black"> 规格型号:${p.model} </font><br /> <br />
+			<font size="4" color="black"> 供应商:${p.brand} </font><br /> <br />
 			<div id=""
 				style="position: relative; top: 30px;">
 				<font size="4" color="black"> 未税价:￥${p.untaxPrice} </font><br /> 

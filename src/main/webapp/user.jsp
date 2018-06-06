@@ -10,8 +10,8 @@
 
         <jsp:include page="header.jsp"/>
         <div class="container-fluid">
-            <IFRAME  src="nav.jsp" name="NavigationFrame" width="20%" height="800" style="background-color: white;" ></IFRAME>        
-            <iframe name="ContentFrame" width="78%" height="800" style="background-color: white;"></iframe>
+            <IFRAME  src="nav.jsp" name="NavigationFrame" width="10%" height="800" style="background-color: white;" ></IFRAME>        
+            <iframe name="ContentFrame" width="88%" height="800" style="background-color: white;"></iframe>
         </div>
     </body>
 </html>
