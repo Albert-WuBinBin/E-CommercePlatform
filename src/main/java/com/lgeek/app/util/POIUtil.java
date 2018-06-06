@@ -145,8 +145,8 @@ public class POIUtil {
 				cell = row.createCell(8);
 				cell.setCellValue(details.getCost() == null ? 0 : details.getCost());
 				cell = row.createCell(9);
-				cell.setCellValue(details.getProduct().getCategory().getName() == null ? ""
-						: details.getProduct().getCategory().getName());
+				cell.setCellValue(details.getProduct().getBrand() == null ? ""
+						: details.getProduct().getBrand());
 				ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream(); 
 				String imagePath = "/usr/local/nginx/static/"+details.getProduct().getImage();
 				bufferImg = ImageIO.read(new File(imagePath));    
