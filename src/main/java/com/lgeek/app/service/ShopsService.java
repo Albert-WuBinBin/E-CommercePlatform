@@ -70,7 +70,7 @@ public class ShopsService {
 
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "规格型号");
-		itemMap.put("columnWidth", 20);
+		itemMap.put("columnWidth", 30);
 		itemMap.put("dataKey", "XH4");
 		headInfoList.add(itemMap);
 
@@ -82,25 +82,25 @@ public class ShopsService {
 
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "未税单价");
-		itemMap.put("columnWidth", 10);
+		itemMap.put("columnWidth", 15);
 		itemMap.put("dataKey", "XH6");
 		headInfoList.add(itemMap);
 		
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "含税单价");
-		itemMap.put("columnWidth", 10);
+		itemMap.put("columnWidth", 15);
 		itemMap.put("dataKey", "XH7");
 		headInfoList.add(itemMap);
 		
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "市场价格");
-		itemMap.put("columnWidth", 10);
+		itemMap.put("columnWidth", 15);
 		itemMap.put("dataKey", "XH8");
 		headInfoList.add(itemMap);
 			
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "消费金额");
-		itemMap.put("columnWidth", 10);
+		itemMap.put("columnWidth", 15);
 		itemMap.put("dataKey", "XH9");
 		headInfoList.add(itemMap);
 		
@@ -111,7 +111,7 @@ public class ShopsService {
 		headInfoList.add(itemMap);
 		itemMap = new HashMap<String, Object>();
 		itemMap.put("title", "照片");
-		itemMap.put("columnWidth", 10);
+		itemMap.put("columnWidth", 12);
 		itemMap.put("dataKey", "XH11");
 		headInfoList.add(itemMap);
 		// ==========================填充数据======================================

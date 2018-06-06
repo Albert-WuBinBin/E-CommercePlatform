@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +14,6 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFPatriarch;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -116,7 +114,7 @@ public class POIUtil {
 
 			cellStyle.setFont(font);
 			cellStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
-			cellStyle.setAlignment(CellStyle.VERTICAL_CENTER);
+			//cellStyle.setAlignment(CellStyle.VERTICAL_CENTER);
 			BufferedImage bufferImg = null;
 			HSSFPatriarch patriarch = hssfSheet.createDrawingPatriarch(); 
 			
