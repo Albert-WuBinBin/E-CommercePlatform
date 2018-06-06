@@ -108,18 +108,32 @@ ManageShop = function(){
 	 			'<button id="upload" type="button" class="btn btn-success" style="margin-right:5px">',
 		 		'<span class="glyphicon glyphicon-upload"></span> 上传图片',
 		 		'</button>',
+		 		'<button id="uploadPDF" type="button" class="btn btn-success" style="margin-right:5px">',
+		 		'<span class="glyphicon glyphicon-upload"></span> 上传文档',
+		 		'</button>',
 	 			'<button id="edit" type="button" class="btn btn-success" style="margin-right:5px">',
 	 			'<span class="glyphicon glyphicon-edit"></span> 编辑',
 	 			'</button>',
 	 			'<button id="remove" type="button" class="btn btn-danger">',
 	 			'<span class="glyphicon glyphicon-remove"></span> 删除',
-	 			'</button>'
+	 			'</button>',
+	 			'<a id="downloadPdf" download="file" src="" type="button" class="btn btn-primary">',
+	 			'<span class="glyphicon glyphicon-download-alt"></span> 下载',
+	 			'</a>'
 	 			].join('');
 	 		},events:{
 	 			'click #upload' :function(event, value, row, index){
 	 				$("#p_id").val(row.id);
 					$("#uploadModal").modal("show");
 					
+	 			},
+	 			'click #uploadPDF' :function(event, value, row, index){
+	 				$("#p_id").val(row.id);
+					$("#pdfUploadModal").modal("show");
+					
+	 			},
+	 			'click #downloadPdf' :function(event, value, row, index){
+	 				$('#downloadPdf').attr('href','file/'+row.code+".pdf"); 
 	 			},
 	 			'click #edit' :function(event, value, row, index){
 	 			
