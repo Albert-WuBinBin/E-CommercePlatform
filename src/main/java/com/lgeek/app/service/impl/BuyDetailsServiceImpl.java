@@ -63,4 +63,9 @@ public class BuyDetailsServiceImpl implements BuyDetailsService{
 		return buyDetailsMapper.getUnfinishedOrdersByOrderId(orderId);
 	}
 
+	@Override
+	public int payment(String name, String orderId) {
+		return buyDetailsMapper.payment(name, orderId);
+	}
+
 }

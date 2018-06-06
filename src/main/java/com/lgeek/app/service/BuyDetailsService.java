@@ -11,4 +11,6 @@ public interface BuyDetailsService {
 	Object getUnfinishedOrdersByUid(String u_id);
 	
 	List<BuyDetails> getUnfinishedOrdersByOrderId(String orderId);
+	
+	 int payment(String name,String orderId);
 }

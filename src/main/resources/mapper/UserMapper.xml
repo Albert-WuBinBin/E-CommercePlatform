@@ -140,12 +140,6 @@
 	insert into buydetails(bd_order_id,bd_request,bd_state,bd_confirm,bd_delivery,bd_comment,bd_date,bd_quantity,bd_cost,bd_name,bd_phone,bd_address,u_id,p_id)
  values(#{orderId},#{request},#{state},#{confirm},#{delivery},#{comment},#{date},#{quantity},#{cost},#{name},#{phone},#{address},#{u_id},#{p_id})
 	</insert>
-	<update id="payment">
-	 update user set u_money=#{money} where u_id=#{id}
-	</update>
-	<update id="payment1">
-	update buydetails set bd_state=#{state} where u_id=#{id}
-	</update>
 	<update id="confirm">
 	update buydetails set bd_confirm=#{confirm} where bd_id=#{id}
 	</update>

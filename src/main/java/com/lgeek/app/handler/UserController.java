@@ -78,7 +78,6 @@ public class UserController {
 						session.setAttribute("shop", user.getShop());
 					}
 					Object unfinishedOrders = buyDetailsServiceImpl.getUnfinishedOrdersByUid(id);
-					request.setAttribute("buyDetails", unfinishedOrders);
 					request.getSession().setAttribute("buyDetails", unfinishedOrders);
 					session.setMaxInactiveInterval(6000);
 					return "homePage";
@@ -165,8 +164,8 @@ public class UserController {
 	}
 
 	
-	@RequestMapping("/ShowAllGoods")
-	public String showAllGoods(HttpServletRequest request, Map<String, Object> map) {
+	@RequestMapping(value="/ShowAllGoods",method=RequestMethod.GET)
+	public String showAllGoods(Map<String, Object> map) {
 		int pageNo = 1;
 		String ca_id=request.getParameter("ca_id");	
 		String max=request.getParameter("max");		

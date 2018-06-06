@@ -131,29 +131,29 @@ table {
 				<div class="container-fluid">
 					<table class="bordered">
 						<tr>
-							<td>图片</td>
-							<td>名字</td>
-							<td>单位</td>
-							<td>价格</td>
-							<td>日期</td>
-							<td>操作</td>
+							<td width="25%">图片</td>
+							<td width="20%">名字</td>
+							<td width="15%">单位</td>
+							<td width="20%">价格</td>
+							<td width="20%">日期</td>
 						</tr>
 					</table>	
 					<c:forEach items="${sessionScope.buyDetails}" var="b">
 					<table class="bordered">
 						<thead>
 							<tr>
-								<th width="1%">订单号 <br/>${b.orderId}</th>	
-								<td style="position: relative; left: 64%;"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	
+								<th width="25%">订单号&nbsp;&nbsp; ${b.orderId}</th>	
+								<th width="20%">项目名字:一刻间</th>
+								<td style="position: relative;left:40%;"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	
 							</tr>
 						</thead>
 						<c:forEach items="${b.buyDetails}" var="bd">
 						<tr>
-							<td height="92" width="1%"><img width="100" height="100" src="${bd.product.image}"/></td>
-							<td width="10%">${bd.product.name}</td>
-							<td width="10%">${bd.quantity}</td>
-							<td width="10%">${bd.cost}</td>
-							<td width="10%"><fmt:formatDate value="${bd.date}" type="both"/> </td>
+							<td width="25%"><img width="100" height="100" src="${bd.product.image}"/></td>
+							<td width="20%">${bd.product.name}</td>
+							<td width="15%">${bd.quantity}</td>
+							<td width="20%">${bd.cost}</td>
+							<td width="20%"><fmt:formatDate value="${bd.date}" type="both"/> </td>
 							<!--  <td width="10%">￥${b.bd_cost}</td>
 							<td width="10%"><a href="">退款/退货</a></td>
 							<td width="15%">提醒发货<br /> 

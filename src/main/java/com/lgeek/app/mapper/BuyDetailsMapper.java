@@ -57,4 +57,6 @@ public interface BuyDetailsMapper {
     
     List<BuyDetails> getUnfinishedOrdersByUid(@Param("u_id")String u_id);
     List<BuyDetails> getUnfinishedOrdersByOrderId(@Param("orderId")String orderId);
+    int payment(@Param("name")String name,@Param("orderId")String orderId);
+    
 }

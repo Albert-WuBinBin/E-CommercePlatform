@@ -1,6 +1,5 @@
 package com.lgeek.app.handler;
 
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -37,9 +37,9 @@ public class CartController {
 	HttpServletResponse response;
 	@Resource
 	UserMapper userMapper;
-	@Resource 
+	@Resource
 	BuyDetailsServiceImpl buyDetailsServiceImpl;
-	
+
 	@RequestMapping("/addToCart")
 	public String addToCart() {
 		String b = "";
@@ -109,105 +109,91 @@ public class CartController {
 
 	@ResponseBody
 	@RequestMapping(value = "/newAddress", produces = "application/json;charset=UTF-8")
-	public String newAddress(Map<String, Object> map)  throws Exception {
+	public String newAddress(Map<String, Object> map) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		String id = (String) request.getSession().getAttribute("id");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
-		
+
 		ReceiptAddress receiptAddress = new ReceiptAddress(name, phone, address, id);
 		userMapper.addReceiptAddress(receiptAddress);
 		Gson gson = new Gson();
 		map.put("msg", "添加成功");
 		String jsonStr = gson.toJson(map);
-		
+
 		return jsonStr;
 
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/getAddressById", produces = "application/json;charset=UTF-8")
-	public String getAddressById(Map<String, Object> map)  throws Exception {
+	public String getAddressById(Map<String, Object> map) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		String ra_id = request.getParameter("ra_id");
 		request.getSession().setAttribute("ra_id", ra_id);
-		List<ReceiptAddress> list=userMapper.getReceiptAddress1(ra_id);
-		System.out.println("list"+list);
+		List<ReceiptAddress> list = userMapper.getReceiptAddress1(ra_id);
+		System.out.println("list" + list);
 		Gson gson = new Gson();
 		map.put("row", list);
 		String jsonStr = gson.toJson(map);
 		return jsonStr;
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/editAddress", produces = "application/json;charset=UTF-8")
-	public String editAddress(Map<String, Object> map)  throws Exception {
+	public String editAddress(Map<String, Object> map) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		String ra_id = (String) request.getSession().getAttribute("ra_id");
 		request.getSession().removeAttribute("ra_id");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
-		userMapper.editReceiptAddress(name,phone,address,ra_id);
+		userMapper.editReceiptAddress(name, phone, address, ra_id);
 		Gson gson = new Gson();
-		map.put("msg","修改成功");
-		
+		map.put("msg", "修改成功");
+
 		String jsonStr = gson.toJson(map);
 		return jsonStr;
 	}
 
 	@RequestMapping("/submitOrder")
-	public String submitOrder() throws Exception{
+	public String submitOrder() throws Exception {
 		request.setCharacterEncoding("UTF-8");
-//		String address=request.getParameter("radio");
-//		
-		String p_id="";
-		int length=Integer.parseInt(request.getParameter("length"));
+		String p_id = "";
+		int length = Integer.parseInt(request.getParameter("length"));
 		int quantity = 0;
-		Float price=0f,cost=0f;
-		String name="";
+		Float price = 0f, cost = 0f;
 		System.out.println(p_id);
-		BuyDetails buyDetails=null;
-		String bd_request="";
-		String bd_state="false";
-		String bd_confirm="false";
-		String u_id=(String) request.getSession().getAttribute("id");	
+		BuyDetails buyDetails = null;
+		String bd_state = "false";
+		String bd_confirm = "false";
+		String u_id = (String) request.getSession().getAttribute("id");
 		String orderId = CommonUtil.getUUID();
-		for(int i=1;i<=length;i++){
-			p_id=request.getParameter("p"+i);
-			price=Float.parseFloat(request.getParameter("price"+i));
-			quantity=Integer.parseInt(request.getParameter("quantity"+i));
-			cost=price*quantity;
-			name=request.getParameter("name"+i);
-			bd_request="i want to buy..."+name;
-			buyDetails=new BuyDetails(orderId,bd_request, bd_state,bd_confirm,"false","false",new Date(),quantity,cost,
-			"","", "",u_id,new Product(Integer.parseInt(p_id)));
-			buyDetailsServiceImpl.addBuyDetails(buyDetails);	
+		for (int i = 1; i <= length; i++) {
+			p_id = request.getParameter("p" + i);
+			price = Float.parseFloat(request.getParameter("price" + i));
+			quantity = Integer.parseInt(request.getParameter("quantity" + i));
+			cost = price * quantity;
+			buyDetails = new BuyDetails(orderId, "", bd_state, bd_confirm, "false", "false", new Date(),
+					quantity, cost, "", "", "", u_id, new Product(Integer.parseInt(p_id)));
+			buyDetailsServiceImpl.addBuyDetails(buyDetails);
 		}
+		request.setAttribute("orderId", orderId);
 		return "afterSubmitOrder";
 	}
+
 	@ResponseBody
-	@RequestMapping(value="/confirmPayment",produces = "application/json;charset=UTF-8")
-	public String confirmPayment(Map<String, Object>map){
-		String u_id=(String) request.getSession().getAttribute("id");
-		String password=request.getParameter("password");
-		System.out.println(password);
-		System.out.println((String)request.getSession().getAttribute("password"));
-		if(password.equalsIgnoreCase((String)request.getSession().getAttribute("password"))){
-			double cost=Double.parseDouble(request.getParameter("money"));
-			System.out.println(cost);
-			User user = userMapper.getUserByID(u_id);
-			int money=(int) (user.getMoney()-cost);
-			if(money>0){
-				System.out.println(money);
-			    userMapper.payment(money,u_id);
-			    userMapper.payment1("true", u_id);
-			    map.put("message","支付成功");
-			}
-			else{
-				map.put("message", "余额不足，支付失败！！！");
-			}
-		}
-		else{
+	@RequestMapping(value = "/confirmPayment", method=RequestMethod.POST)
+	public String confirmPayment(Map<String, Object> map) {
+		String orderId = request.getParameter("orderId");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+
+		if (password.equalsIgnoreCase((String) request.getSession().getAttribute("password"))) {
+			buyDetailsServiceImpl.payment(name, orderId);
+			map.put("message", "支付成功");
+		} else {
 			map.put("message", "密码错误，请输入正确的密码！！！");
 		}
 		Gson gson = new Gson();

@@ -84,7 +84,7 @@
 			 	</div>
                 <div class="row">
                     <c:forEach items="${productPage.list}" var="product">  
-                        <div class="col-md-3 col-sm-6" style="height: 480px;">
+                        <div class="col-md-3 col-sm-6" style="height: 300px;">
                             <div class="single-shop-product">
                                 <div class="product-upper">
                                     <a href="showDetails?p_id=${product.id}"><img src="${product.image}"  alt=""></a>
@@ -105,27 +105,26 @@
             </div>
             <center>
               <br><br>
-                Total  ${productPage.totalPageNumber } page(s)
+                	共  ${productPage.totalPageNumber } 页(s)
 
                 &nbsp;&nbsp;
-                Current  ${productPage.pageNo } page(s)		
+                	当前第 ${productPage.pageNo } 页(s)		
                 <c:if test="${productPage.hasPrev }">
-                    <a href="ShowAllGoods?pageNo=1">home page</a>
+                    <a href="ShowAllGoods?pageNo=1">第一页</a>
                     &nbsp;&nbsp;
-                    <a href="ShowAllGoods?pageNo=${productPage.prevPage }">Up page</a>
+                    <a href="ShowAllGoods?pageNo=${productPage.prevPage }">上一页</a>
                 </c:if>
 
                 &nbsp;&nbsp;
 
                 <c:if test="${productPage.hasNext }">
-                    <a href="ShowAllGoods?pageNo=${productPage.nextPage }">Down page</a>
+                    <a href="ShowAllGoods?pageNo=${productPage.nextPage }">下一页</a>
                     &nbsp;&nbsp;
-                    <a href="ShowAllGoods?pageNo=${productPage.totalPageNumber }">Last page</a>
+                    <a href="ShowAllGoods?pageNo=${productPage.totalPageNumber }">最后一页</a>
                 </c:if>
 
                 &nbsp;&nbsp;
-
-                Go to <input type="text" size="1" id="pageNo"/> page(s)	
+              	 跳转第 <input type="text" size="1" id="pageNo"/> 页(s)	
             </center>
         </div>
     </body>
