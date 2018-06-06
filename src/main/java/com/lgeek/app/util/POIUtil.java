@@ -162,7 +162,7 @@ public class POIUtil {
 	             */  
 	            //图片一导出到单元格B2中  
 	            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,  
-	                    (short) 10, i, (short)11, (i+1));  
+	                    (short) 10, rownum, (short)11, (rownum+1));  
 	            // 插入图片  
 	            patriarch.createPicture(anchor, hssfWorkbook.addPicture(byteArrayOut  
 	                    .toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG)); 
