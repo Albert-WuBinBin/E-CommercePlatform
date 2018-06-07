@@ -45,11 +45,12 @@ public class BuyDetailsServiceImpl implements BuyDetailsService{
 				for (BuyDetails buyDetails : unfinishedOrders) {
 					if(orderId.equals(buyDetails.getOrderId())) {
 						details.add(buyDetails);
+						break;
 					}
 				}
 				jsonObject.put("orderId", orderId);
 				jsonObject.put("projectName", details.get(0).getRequest());
-				jsonObject.put("buyDetails", details);
+				jsonObject.put("createTime", details.get(0).getDate());
 				jsonArray.add(jsonObject);
 			}
 			return jsonArray;

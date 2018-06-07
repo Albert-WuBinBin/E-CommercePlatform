@@ -1,6 +1,7 @@
 package com.lgeek.app.handler;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.lgeek.app.mapper.UserMapper;
 import com.lgeek.app.model.BuyDetails;
 import com.lgeek.app.model.Product;
 import com.lgeek.app.model.ReceiptAddress;
 import com.lgeek.app.model.ShoppingCart;
+import com.lgeek.app.model.ShoppingCartItem;
 import com.lgeek.app.model.User;
 import com.lgeek.app.service.ProductService;
 import com.lgeek.app.service.impl.BuyDetailsServiceImpl;
@@ -39,19 +42,23 @@ public class CartController {
 	UserMapper userMapper;
 	@Resource
 	BuyDetailsServiceImpl buyDetailsServiceImpl;
-
-	@RequestMapping("/addToCart")
-	public String addToCart() {
-		String b = "";
-		String id = request.getParameter("p_id");
-		System.out.println("ID:" + id);
-		boolean flag = false;
-		ShoppingCart sc = productService.getShoppingCart(request);
-		flag = productService.addToCart(id, sc);
-		if (flag) {
-			b = "cart";
+	
+	@ResponseBody
+	@RequestMapping(value="/addToCart",method=RequestMethod.POST)
+	public String addToCart(Map<String, String> map) {
+		try {
+			String id = request.getParameter("p_id");
+			int quantity = request.getParameter("quantity")==null?1:Integer.parseInt(request.getParameter("quantity"));
+			ShoppingCart sc = productService.getShoppingCart(request);
+			for (int i = 0; i < quantity; i++) {
+				productService.addToCart(id, sc);
+			}
+			map.put("msg", "success");
+		} catch (Exception e) {
+			map.put("msg", "fail");
+			e.printStackTrace();
 		}
-		return b;
+		return JSON.toJSONString(map);
 	}
 
 	@ResponseBody
@@ -72,9 +79,6 @@ public class CartController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("productNumber", sc.getProductNumber());
 		result.put("totalMoney", sc.getTotalMoney());
-		System.out.println(sc.getProductNumber());
-		System.out.println(sc.getTotalMoney());
-
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(result);
 

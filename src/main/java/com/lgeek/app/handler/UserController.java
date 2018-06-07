@@ -547,4 +547,11 @@ public class UserController {
 	    ouputStream.flush();    
 	    ouputStream.close();  	 
 	}
+	@ResponseBody
+	@RequestMapping(value="getBuyDetailsByOrderId",method=RequestMethod.GET)
+	public String getBuyDetailsByOrderId() {
+		String orderId = request.getParameter("orderId");
+		List<BuyDetails> buyDetails = buyDetailsServiceImpl.getUnfinishedOrdersByOrderId(orderId);
+		return JSON.toJSONString(buyDetails);
+	}
 }
