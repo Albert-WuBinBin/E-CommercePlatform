@@ -13,7 +13,7 @@
         <jsp:include page="header.jsp" flush="true"/>
         <div class="single-product-area">
 			 <div class="container">
-			 	<div class="row" style="position:absolute; top:30px; left:200px; height:50px;">
+			 	<div class="row" style="position:absolute; top:30px; left:23%; height:50px;">
 			 		<form class="form-inline" id="searchform" action="ShowAllGoods1">
 			 		
 			 			<div class="form-group">

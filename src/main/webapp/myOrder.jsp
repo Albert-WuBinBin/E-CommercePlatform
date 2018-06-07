@@ -111,7 +111,8 @@ table {
 						<tr>
 							<td width="30%">订单号:${b.orderId}</td>	
 							<td width="20%">项目名字:${b.projectName}</td>
-							<td width="20%">创建时间:<fmt:formatDate value="${b.createTime}" type="both"/> </td>	
+							<td width="15">总购买金额:￥${b.payMoney}</td>
+							<td width="15%">创建时间:<fmt:formatDate value="${b.createTime}" type="both"/> </td>	
 							<td width="5%"><button type="button"data-toggle="modal"
 								data-target="#viewInfoModal" id="${b.orderId}" class="btn btn-primary viewInfo">查看详情</button></td>
 							<td width="10%"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	

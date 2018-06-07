@@ -38,18 +38,21 @@ public class BuyDetailsServiceImpl implements BuyDetailsService{
 			JSONObject jsonObject = null;
 			List<BuyDetails> details = null;
 			String orderId = "";
+			
 			for(int i=0;i<orderIds.size();i++) {
 				jsonObject = new JSONObject();
 				details = new ArrayList<>();
 				orderId = orderIds.get(i);
+				Float payMoney = 0f;
 				for (BuyDetails buyDetails : unfinishedOrders) {
 					if(orderId.equals(buyDetails.getOrderId())) {
 						details.add(buyDetails);
-						break;
+						payMoney=payMoney+buyDetails.getCost();
 					}
 				}
 				jsonObject.put("orderId", orderId);
 				jsonObject.put("projectName", details.get(0).getRequest());
+				jsonObject.put("payMoney", payMoney);
 				jsonObject.put("createTime", details.get(0).getDate());
 				jsonArray.add(jsonObject);
 			}

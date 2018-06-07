@@ -312,7 +312,6 @@
     join category ca on p.ca_id =  ca.ca_id
     where bd_order_id = #{orderId} and  bd_state = 'true' 
   </select>
-  
   	<update id="payment">
 	update buydetails set bd_request = #{name} , bd_state='true' where bd_order_id=#{orderId}
 	</update>
