@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="jslib/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
 		<script src="jslib/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    	<script type="text/javascript" src="js/myOrder.js"></script>
     </head>
     <style>
 body {
@@ -104,92 +105,38 @@ table {
 }
 </style>
     <body>
-        <ul class="nav nav-tabs" role="tablist" id="myTab">
-			<li role="presentation" class="active"><a href="#unfinishedOrders"
-				role="tab" data-toggle="tab">未完成订单</a></li>
-			<li role="presentation"><a href="#finishedOrders" role="tab"
-				data-toggle="tab">已完成订单</a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane fade in active" id="unfinishedOrders">
-				<!-- <div class="container-fluid">
-					<h2>未完成订单</h2>
-					<div class="fixed-table-toolbar">
-						<div class="bs-bars pull-left">
-							<div id="toolbar">
-								<button type="button" class="btn btn-primary" data-toggle="modal"
-									data-target="#addModal">
-									<span class="glyphicon glyphicon-plus"></span> 创 建
-								</button>
-								<button type="button" class="btn btn-success  btn-search">
-									<span class="glyphicon glyphicon-search"></span> 查 询
-								</button>
-							</div>
-						</div>
-					</div>		
-				</div>	 -->	
-				<div class="container-fluid">
-					<table class="bordered">
+		<div class="container-fluid">	
+			<c:forEach items="${sessionScope.buyDetails}" var="b">
+				<table class="bordered">
 						<tr>
-							<td width="25%">图片</td>
-							<td width="20%">名字</td>
-							<td width="15%">单位</td>
-							<td width="20%">购买金额</td>
-							<td width="20%">日期</td>
+							<td width="30%">订单号:${b.orderId}</td>	
+							<td width="20%">项目名字:${b.projectName}</td>
+							<td width="20%">创建时间:<fmt:formatDate value="${b.createTime}" type="both"/> </td>	
+							<td width="5%"><button type="button"data-toggle="modal"
+								data-target="#viewInfoModal" id="${b.orderId}" class="btn btn-primary viewInfo">查看详情</button></td>
+							<td width="10%"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	
 						</tr>
-					</table>	
-					<c:forEach items="${sessionScope.buyDetails}" var="b">
-					<table class="bordered">
-						<thead>
-							<tr>
-								<th width="25%">订单号&nbsp;&nbsp; ${b.orderId}</th>	
-								<th width="20%">项目名字:${b.projectName}</th>
-								<td style="position: relative;left:40%;"><a type="button" class="btn btn-primary" href="exportOrderToExcel?orderId=${b.orderId}">导出</a></td>	
-							</tr>
-						</thead>
-						<c:forEach items="${b.buyDetails}" var="bd">
-						<tr>
-							<td width="25%"><img width="100" height="100" src="${bd.product.image}"/></td>
-							<td width="20%">${bd.product.name}</td>
-							<td width="15%">${bd.quantity}</td>
-							<td width="20%">${bd.cost}</td>
-							<td width="20%"><fmt:formatDate value="${bd.date}" type="both"/> </td>
-							<!--  <td width="10%">￥${b.bd_cost}</td>
-							<td width="10%"><a href="">退款/退货</a></td>
-							<td width="15%">提醒发货<br /> 
-							</td>
-							<td width="10%"><input onclick="click1()" type="button" value="导出" /></td>-->
-							
-						</tr>
-						</c:forEach>
-					</table>
-				</c:forEach>
+				</table>
+			</c:forEach>
+		</div>
+		<div class="modal fade" id="viewInfoModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">订单详情</h4>
+				</div>
+				<div class="modal-body">
+					<table id="table" data-striped=true data-pagination=true
+					data-locale="zh-CN">
+				</table>
 				</div>
 			</div>
 		</div>
+	</div>
     </body>
-    <script type="text/javascript">
-    $(function () {
-
-    	$(".btn-search").click(function(){
-			$.ajax({
-				type:"get",
-				url:"unfinishedOrders",
-				dataType:"json",
-				data:{},
-				success:function(result){
-					console.log(result.msg);
-					alert(result.msg)
-					if(result.msg=="success"){
-						alert("查询成功");
-					}
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("请求错误：" + XMLHttpRequest.status + "\nurl:" + this.url);
-				}
-			});
-    	});
-    	   
-    })
-    </script>
 </html>

@@ -121,7 +121,20 @@
                         <ul class="nav navbar-nav">
                             <li><a href="homePage.jsp">Home</a></li>
                             <li><a href="ShowAllGoods">Shop page</a></li>
-                            <li><a href="cart.jsp">Cart</a></li>
+                            <%
+								if (session.getAttribute("username") != null) {
+							%>
+							  <li><a href="cart.jsp">Cart</a></li>
+							<%
+								} else {
+							%>
+							<li><a href="login.jsp" onclick="return login()">
+								Cart
+							</button></a></li>
+							<%
+								}
+							%>
+                          
                         </ul>
                     </div>  
                 </div>

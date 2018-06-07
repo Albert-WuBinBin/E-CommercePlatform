@@ -55,6 +55,59 @@
 	            return;
 	         }
 	 	});
+	 	 $("#pageNo").change(function () {
+ 	        var val = $(this).val();
+ 	        val = $.trim(val);
+ 	        var flag = false;
+ 	        var reg = /^\d+$/g;
+ 	        var pageNo = 0;
+
+ 	        if (reg.test(val)) {
+ 	           pageNo = parseInt(val);
+ 	           if (pageNo >= 1 && pageNo <= parseInt("${productPage.totalPageNumber }")) {
+ 	                 flag = true;
+ 	            }
+ 	        }
+ 	        if (!flag) {
+ 	           alert("The input is not a valid number.");
+ 	           $(this).val("");
+ 	           return;
+ 	        }
+ 	       	var href = "ShowAllGoods?pageNo=" + pageNo;
+ 	        window.location.href = href;
+ 	     });
+ 	 $(".addToCart").click(function(){
+ 		 $("#p_id").text(this.id);
+ 	 })
+ 	 $(".btn-add").click(function(){
+ 		 var parent = $("#addModal");
+ 		 var p_id =  parent.find("#p_id").text();
+ 		 var quantity = parent.find("#quantity").val();
+ 		 var reg = /^\d+$/g;
+ 		 if(!reg.test(quantity)){
+ 			 alert("请输入正确的数字");
+ 			 return false;
+ 		 }
+ 		 var submitData={
+					p_id:p_id,
+					quantity:quantity
+			 }
+ 		 $.ajax({
+ 				type:"post",
+ 				url:"addToCart",
+ 				dataType:"json",
+ 				data:submitData,
+ 				success:function(result){
+ 					if(result.msg=="success"){
+ 						alert("添加成功");
+ 						$("#addModal").modal("hide");
+ 					}
+ 				},
+ 				error: function(XMLHttpRequest, textStatus, errorThrown) {
+ 				alert("请求错误：" + XMLHttpRequest.status + "\nurl:" + this.url);
+ 			}
+ 			});	    	
+ 		 });
 });
 function getCList(){
 	 	var cList=new Array;
@@ -74,3 +127,12 @@ function getCList(){
 			});	
 		return cList;
 	}
+function login() {
+	var flag = confirm("加入购物车前，需要先登录，是否登录");
+	if (flag) {
+		var href = this.href;
+		window.location.href = href;
+		return true;
+	}
+	return false;
+}

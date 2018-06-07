@@ -63,18 +63,21 @@ ManageShop = function(){
 	 			}
 	 		}},
 	 		{title: '描述',field: 'describe',valign: 'middle',formatter:function(value,row,index){
-	 			if(value.length>20){
-	 				var val=value.substring(0,20);
-		 			var val1=value.substring(21,value.length-1); 
-		 			return val+"<br/>"+val1;
-		 			
-		 			var returnVal ;
-		 			var length = 20;
+	 			var start=0,end=30;
+	 			var length=30;
+	 			if(value.length>30){
+		 			var returnVal="" ;
 		 			while(true){
-		 				var val=value.substring(0,20);
-		 				var val1=value.substring(21,value.length-1); 
+		 				var val=value.substring(start,end);
+		 				returnVal = returnVal +val+"<br/>";
+		 				if(value.length-1-end<length){
+		 					returnVal = returnVal +value.substring(end+1,value.length)+"<br/>" ;
+		 					break;
+		 				}
+		 				start = start + length ;
+		 				end = end +length;
 		 			}
-		 			
+		 			return returnVal;
 	 			}
 	 			else{
 	 				return value;
@@ -117,9 +120,13 @@ ManageShop = function(){
 	 			'<button id="remove" type="button" class="btn btn-danger">',
 	 			'<span class="glyphicon glyphicon-remove"></span> 删除',
 	 			'</button>',
-	 			'<a id="downloadPdf" download="file" src="" type="button" class="btn btn-primary">',
-	 			'<span class="glyphicon glyphicon-download-alt"></span> 下载',
-	 			'</a>'
+	 			'<div class="btn-group"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">',
+	 			'下载 &nbsp;<span class="caret"></span>',
+	 			'</button>',
+	 			'<ul class="dropdown-menu" role="menu">',
+	 			'<li><a id="downloadPdf" download="file" href="" type="button">下载</a></li>',
+	 			'<li><a id="viewPdf" target="_blank"  href="" type="button">预览</li>',
+	 			'</ul></div>'
 	 			].join('');
 	 		},events:{
 	 			'click #upload' :function(event, value, row, index){
@@ -134,6 +141,9 @@ ManageShop = function(){
 	 			},
 	 			'click #downloadPdf' :function(event, value, row, index){
 	 				$('#downloadPdf').attr('href','file/'+row.code+".pdf"); 
+	 			},
+	 			'click #viewPdf' :function(event, value, row, index){
+	 				$('#viewPdf').attr('href','file/'+row.code+".pdf");
 	 			},
 	 			'click #edit' :function(event, value, row, index){
 	 			

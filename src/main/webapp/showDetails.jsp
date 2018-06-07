@@ -13,34 +13,9 @@
 <script type="text/javascript"  src="jslib/jquery.min.js"></script>
 <script type="text/javascript"  src="jslib/jquery.colorbox-min.js"></script>
 <script type="text/javascript"  src="jslib/fangdajing.js"></script>
+<script type="text/javascript"  src="js/showDetails.js"></script>
 </head>
-<script>
-	function login() {
-		var flag = confirm("加入购物车前，需要先登录，是否登录");
-		if (flag) {
-			var href = this.href;
-			window.location.href = href;
-			return true;
-		}
-		return false;
-	}
-	function minus() {
-		var val=$("#quentity").val();
-		//var val = window.document.getElementById("quentity").value;
-		if (val > 1) {
-			val--;
-		}
-		$("#quentity").val(val);
-		//window.document.getElementById("quentity").value = val;
-	}
-	function add() {
-		var val=$("#quentity").val();
-		//var val = window.document.getElementById("quentity").value;
-		val++;
-		$("#quentity").val(val);
-		//window.document.getElementById("quentity").value = val;
-	}
-</script>
+
 <body>
 
 	<jsp:include page="header.jsp" />
@@ -51,6 +26,7 @@
 
 		<div id=""
 			style="position: absolute; width: 418px; height: 418px; left: 700px; top: 230px">
+			<span id="p_id" style="display: none">${p.id}</span>
 			<font size="4" color="black">商品名字: ${p.name} </font><br />	<br /> <br /> 
 			<font size="4" color="black"> 商品描述:${p.describe} </font><br /><br/>
 			<font size="4" color="black"> 规格型号:${p.model} </font><br /> <br />
@@ -67,7 +43,7 @@
 					style="width: 40px; height: 40px; font-size: 20px;"
 					onclick="minus()">-</button>
 
-				<input type="text" name="quentity" id="quentity" value="1"
+				<input type="text" name="quantity" id="quantity" value="1"
 					style="width: 60px; height: 40px; font-size: 20px; top: 20px;" />
 				<button type="button" class="btn btn-default"
 					style="width: 40px; height: 40px; font-size: 20px;" onclick="add()">+</button>
@@ -80,10 +56,10 @@
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-				<a href="addToCart?p_id=${p.id}"><button type="submit"
+				<button type="button" id="addToCart"
 					style="background: #ff3333; color: #ffffff; width: 120px; height: 50px;">
 					加入购物车
-				</button></a>
+				</button>
 				<%
 					} else {
 				%>
