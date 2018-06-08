@@ -36,9 +36,9 @@
         <div style="position: relative; left: 100px;height:400px;" >
             <h1>总金额:￥<span class="money"> ${ sessionScope.ShoppingCart.totalMoney}</span></h1>
                 <h1>请输入项目名：<input type="text" id="name" /></h1>
-                <h1>请输入支付密码：<input type="password" id="password" /> 
+                <h1>请输入密码&nbsp;&nbsp;&nbsp;：<input type="password" id="password" /> 
                 <span id="orderId" style="display: none;">${requestScope.orderId}</span>
-                <input class="pay" type="button" value="确认付款"/> </h1>
+                <input class="btn btn-primary pay" type="button" value="确认付款"/> </h1>
         </div>
     </body>
 </html>

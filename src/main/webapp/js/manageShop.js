@@ -143,31 +143,52 @@ ManageShop = function(){
 	 				$('#downloadPdf').attr('href','file/'+row.code+".pdf"); 
 	 			},
 	 			'click #viewPdf' :function(event, value, row, index){
+	 				alert(row.code)
 	 				$('#viewPdf').attr('href','file/'+row.code+".pdf");
 	 			},
-	 			'click #edit' :function(event, value, row, index){
-	 			
+	 			'click #edit' :function(event, value, row, index){	 			
 					var parent=$("#editModal");
 					parent.find("#name").val(row.name);
+					parent.find("#code").val(row.code);
+					parent.find("#describe").val(row.describe);
+					parent.find("#model").val(row.model);
+					parent.find("#unit").val(row.unit);				
+					parent.find("#untaxPrice").val(row.untaxPrice);
+					parent.find("#taxPrice").val(row.taxPrice);
 					parent.find("#price").val(row.price);
-					parent.find("#stock").val(row.stock);
-					parent.find("#brand").val(row.brand);
 					parent.find("#category option[value="+row.category.id+"]").attr("selected", "selected");
 					parent.modal("show");
-					parent.find(".btn-add1").click(function(){
-						var name=parent.find("#name").val();
-						var price=parent.find("#price").val();
-						var stock=parent.find("#stock").val();
-						var brand=parent.find("#brand").val();
-						var category=parent.find("#category").val();
+					parent.find(".btn-add").click(function(){
+						var name= $.trim(parent.find("#name").val());
+						if(name==""){
+							alert("请输入名字");
+							return false;
+						}
+						var describe= $.trim(parent.find("#describe").val());
+						var model= $.trim(parent.find("#model").val());
+						var unit= $.trim(parent.find("#unit").val());
+						var untaxPrice=$.trim(parent.find("#untaxPrice").val());
+						var taxPrice=$.trim(parent.find("#taxPrice").val());
+						var price=$.trim(parent.find("#price").val());
+						var ca_id=parent.find("#category").val();
+						if(ca_id==0){
+							alert("请选择一个供应商");
+							return false;
+						}
+						var ca_name = parent.find("#category").find("option:selected").text();
 						var submitData={
 								id:row.id,
 								name:name,
+								code:code,
+								describe:describe,
+								model:model,
+								unit:unit,
+								untaxPrice:untaxPrice,
+								taxPrice:taxPrice,
 								price:price,
-								stock:stock,
-								brand:brand,
-								category:category,
-								
+								ca_id:ca_id,
+								ca_name:ca_name,
+								brand:ca_name
 						};
 						$.ajax({
 							type:"post",
@@ -216,17 +237,24 @@ ManageShop = function(){
 	 };
 	 this.initDocumentEvent = function() {
 		 	var self=this;
-			$(".btn-add").click(function(){
+			$("#addModal").find(".btn-add").click(function(){
 				var parent=$("#addModal");
-				var name=parent.find("#name").val();
-				var code=parent.find("#code").val();
-				var describe=parent.find("#describe").val();
-				var model=parent.find("#model").val();
-				var unit=parent.find("#unit").val();
-				var untaxPrice=parent.find("#untaxPrice").val();
-				var taxPrice=parent.find("#taxPrice").val();
-				var price=parent.find("#price").val();
+				var name= $.trim(parent.find("#name").val());
+				if(name==""){
+					alert("请输入名字");
+					return false;
+				}
+				var describe= $.trim(parent.find("#describe").val());
+				var model= $.trim(parent.find("#model").val());
+				var unit= $.trim(parent.find("#unit").val());
+				var untaxPrice=$.trim(parent.find("#untaxPrice").val());
+				var taxPrice=$.trim(parent.find("#taxPrice").val());
+				var price=$.trim(parent.find("#price").val());
 				var ca_id=parent.find("#category").val();
+				if(ca_id==0){
+					alert("请选择一个供应商");
+					return false;
+				}
 				var ca_name = parent.find("#category").find("option:selected").text();
 				var submitData={
 						name:name,
@@ -238,7 +266,8 @@ ManageShop = function(){
 						taxPrice:taxPrice,
 						price:price,
 						ca_id:ca_id,
-						ca_name:ca_name
+						ca_name:ca_name,
+						brand:ca_name
 				};
 				$.ajax({
 					type:"post",

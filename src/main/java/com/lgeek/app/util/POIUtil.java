@@ -160,8 +160,7 @@ public class POIUtil {
 	             * 后四个参数，前连个表示图片左上角所在的cellNum和 rowNum，后天个参数对应的表示图片右下角所在的cellNum和 rowNum， 
 	             * excel中的cellNum和rowNum的index都是从0开始的 
 	             *  
-	             */  
-	            //图片一导出到单元格B2中  
+	             */    
 	            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,  
 	                    (short) 10, rownum, (short)11, (rownum+1));  
 	            // 插入图片  
@@ -192,23 +191,6 @@ public class POIUtil {
 			}
 		}
 	}
-
-	// public static void exportExcel2FilePath(String sheetName, String filePath,
-	// List<Map<String, Object>> headInfoList,
-	// List<Map<String, Object>> dataList) throws Exception {
-	// POIUtil poiUtil = new POIUtil();
-	// //1.创建 Workbook
-	// HSSFWorkbook hssfWorkbook = poiUtil.getHSSFWorkbook();
-	// //2.创建一个Excel的Sheet
-	// HSSFSheet hssfSheet = poiUtil.getHSSFSheet(hssfWorkbook, sheetName);
-	// //3.写入 head
-	// poiUtil.writeHeader(hssfWorkbook, hssfSheet, headInfoList);
-	// //4.写入内容
-	// poiUtil.writeContent(hssfWorkbook, hssfSheet, 1, headInfoList, dataList);
-	// //5.保存文件到filePath中
-	// poiUtil.write2FilePath(hssfWorkbook, filePath);
-	// }
-
 	public static HSSFWorkbook exportExcel(String sheetName, List<Map<String, Object>> headInfoList,
 			List<BuyDetails> buyDetails) {
 		POIUtil poiUtil = new POIUtil();

@@ -83,7 +83,7 @@
 		<div class="tab-pane fade in active" id="shopmanage">
 			<div class="container-fluid">
 				<h2>商品批量上传</h2>
-				<a type="button" class="btn btn-primary" href="exportExcel">下载模版</a>
+				<a type="button" class="btn btn-primary" download="product" href="file/product.xls">下载模版</a>
 				<form action="importExcel" method="post"
 					enctype="multipart/form-data">
 					<input type="file" name="file" id="excelfile" class="file-loading" />
@@ -142,8 +142,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 编码<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 编码
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="code" name="code"
@@ -152,8 +151,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 描述<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 描述
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="describe" name="describe"
@@ -162,8 +160,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 规格型号<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 规格型号
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="model" name="model"
@@ -172,8 +169,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 单位<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 单位
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="unit" name="unit"
@@ -182,8 +178,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 未税价格<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 未税价格
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="untaxPrice" name="untaxPrice"
@@ -192,8 +187,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 含税价格<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 含税价格
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="taxPrice" name="taxPrice"
@@ -202,8 +196,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 市场价格<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 市场价格
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="price" name="price"
@@ -240,7 +233,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">修改商品</h4>
+					<h4 class="modal-title" id="myModalLabel">添加商品</h4>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" action="addProduct" method="post">
@@ -257,37 +250,70 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 价格<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
+								class="glyphicon glyphicon-list-alt"></span> 编码
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="code" name="code"
+									placeholder="请填写商品编码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 描述
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="describe" name="describe"
+									placeholder="请填写商品描述">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 规格型号
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="model" name="model"
+									placeholder="请填写商品规格型号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 单位
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="unit" name="unit"
+									placeholder="请填写商品单位">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 未税价格
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="untaxPrice" name="untaxPrice"
+									placeholder="请填写商品未税价格">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 含税价格
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="taxPrice" name="taxPrice"
+									placeholder="请填写含税价格">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> <span
+								class="glyphicon glyphicon-list-alt"></span> 市场价格
 							</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="price" name="price"
-									placeholder="请填写商品价格">
+									placeholder="请填写商品市场价格">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 库存<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
-							</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="stock" name="stock"
-									placeholder="请填写商品库存">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 品牌<span
-								class="glyphicon glyphicon-star" style="color: red;"></span>
-							</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="brand" name="brand"
-									placeholder="请填写商品库存">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label"> <span
-								class="glyphicon glyphicon-list-alt"></span> 类别<span
+								class="glyphicon glyphicon-list-alt"></span> 供应商<span
 								class="glyphicon glyphicon-star" style="color: red;"></span>
 							</label>
 							<div class="col-sm-9">
@@ -296,14 +322,11 @@
 								</select>
 							</div>
 						</div>
-
 					</form>
-
-
 				</div>
 				<div class="modal-footer">
-
-					<button type="button" class="btn btn-primary btn-add1">保存</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary btn-add">保存</button>
 				</div>
 
 			</div>

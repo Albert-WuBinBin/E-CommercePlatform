@@ -2,10 +2,12 @@
   <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lgeek.app.mapper.ProductMapper">
 <select id="getProduct1" parameterType="String" resultMap="getProductMap">
-		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where p_id=#{id}
+		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id 
+		where p_id=#{id} and p_flag = 1
 	</select>
 	<select id="getProduct" parameterType="String" resultMap="getProductMap">
-		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where p_id=#{id}
+		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id
+		 where p_id=#{id} and p_flag = 1
 	</select>
 	<select id="getShopProduct"  resultMap="getProductMap">
 		select * from product  where s_id=#{s_id} and p_flag = 1
@@ -43,35 +45,35 @@
 	</select>
 	
 	<select id="getPageList"  resultMap="getProductMap" >
-		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize}
+		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize}
 	</select>
 	<select id="getPageList1"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p_price &lt; #{max} 
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 	<select id="getPageList2"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p_price between #{min} and #{max} 
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 	<select id="getPageList3"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p_price &gt; #{min} 
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 	<select id="getPageList4"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p.ca_id=#{ca_id}
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 	<select id="getPageList5"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p.ca_id=#{ca_id} and p_price &lt; #{max} 
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 	<select id="getPageList6"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p.ca_id=#{ca_id} and p_price between #{min} and #{max} 
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext} and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 	<select id="getPageList7"  resultMap="getProductMap" >
 		select * from product p join category c on  p.ca_id=c.ca_id join shop s on p.s_id=s.s_id where flag='true' and p.ca_id=#{ca_id} and p_price &gt; #{min} 
-		and p_name like #{searchtext} LIMIT #{pageNo}, #{pageSize} 
+		and p_name like #{searchtext}  and p_flag = 1 LIMIT #{pageNo}, #{pageSize} 
 	</select>
 
 </mapper>

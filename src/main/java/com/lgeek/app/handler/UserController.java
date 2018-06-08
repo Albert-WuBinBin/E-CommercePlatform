@@ -36,7 +36,6 @@ import com.lgeek.app.model.Shop;
 import com.lgeek.app.model.User;
 import com.lgeek.app.service.ProductService;
 import com.lgeek.app.service.ShopsService;
-import com.lgeek.app.service.UserService;
 import com.lgeek.app.service.impl.BuyDetailsServiceImpl;
 
 @Controller
@@ -352,8 +351,6 @@ public class UserController {
 		return "RetrievePassword";
 
 	}
-	@Resource
-	UserService userService;
 	
 	@ResponseBody
 	@RequestMapping(value="/addShop",method=RequestMethod.POST)
