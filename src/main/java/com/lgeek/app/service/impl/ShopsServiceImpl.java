@@ -163,6 +163,7 @@ public class ShopsServiceImpl implements ShopsService{
 			
 			List<Category> categories = shopMapper.getAllCategory();
 			int rowNum = sheet.getLastRowNum() + 1;
+			System.out.println("------------rowNum:"+rowNum);
 			for (int i = 1; i < rowNum; i++) {// 从第二行开始读取数据,第一行是表头
 				try {
 					name = ""; code = ""; describe = ""; model = ""; unit = ""; ca_name = ""; untaxPrice = "";
@@ -245,7 +246,9 @@ public class ShopsServiceImpl implements ShopsService{
 						}
 					}
 					product.setImage("images/"+(i+1)+".png");
-					shopMapper.addProduct(product, ca_id, s_id);
+					if(!product.getName().equals("")) {
+						shopMapper.addProduct(product, ca_id, s_id);
+					}	
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
