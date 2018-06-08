@@ -230,7 +230,7 @@ public class ShopsServiceImpl implements ShopsService{
 						}
 					}
 					product.setName(name);
-					product.setCode(code);
+					product.setCode(String.valueOf(i));
 					product.setDescribe(describe);
 					product.setModel(model);
 					product.setUnit(unit);
