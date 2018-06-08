@@ -135,7 +135,6 @@ ManageShop = function(){
 					
 	 			},
 	 			'click #uploadPDF' :function(event, value, row, index){
-	 				$("#p_id").val(row.id);
 					$("#pdfUploadModal").modal("show");
 					
 	 			},
@@ -291,6 +290,9 @@ ManageShop = function(){
 					$("#addModal #category").append(option);
 					$("#editModal #category").append(option);
 			}
+			$("#downloadModel").click(function(){
+				$('#downloadModel').attr('href','file/product.xls'); 
+			});
 	 }
 		
 	this.init = function(){

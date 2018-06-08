@@ -83,7 +83,7 @@
 		<div class="tab-pane fade in active" id="shopmanage">
 			<div class="container-fluid">
 				<h2>商品批量上传</h2>
-				<a type="button" class="btn btn-primary" download="product" href="file/product.xls">下载模版</a>
+				<a type="button" class="btn btn-primary" id="downloadModel" download="product">下载模版</a>
 				<form action="importExcel" method="post"
 					enctype="multipart/form-data">
 					<input type="file" name="file" id="excelfile" class="file-loading" />
