@@ -263,6 +263,8 @@ public class UserController {
 		String idcart = request.getParameter("idcart");
 		String address = request.getParameter("address");
 		userMapper.modifyUser(new User(id, name, phone, email, address, Integer.parseInt(age), sex, idcart));
+		User user = userMapper.getUserByID(id);
+		session.setAttribute("user", user);
 		return "modifyPersonalInformation";
 	}
 

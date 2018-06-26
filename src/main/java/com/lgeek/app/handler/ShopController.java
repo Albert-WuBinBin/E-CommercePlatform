@@ -56,7 +56,6 @@ public class ShopController {
 	public String getAllProduct() {
 		Shop shop = (Shop) request.getSession().getAttribute("shop");
 		List<Product> products = productMapper.getShopProduct(shop.getId());
-		System.out.println(JSONObject.toJSONString(products));
 		return JSONObject.toJSONString(products);
 	}
 	@ResponseBody

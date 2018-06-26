@@ -14,70 +14,56 @@
     </head>
     <body>
         <div class="container" style="position:relative;top:30px;">
-            <sql:setDataSource var="user" driver="com.mysql.jdbc.Driver"
-			url="jdbc:mysql://localhost:3307/ECommercePlatform?serverTimezone=UTC" user="root"
-			password="123456" />
-		<sql:query dataSource="${user}" var="us">
-           		SELECT * FROM user  where u_id='<%=session.getAttribute("id")%>' 
-        </sql:query>
-        	 <c:forEach  items="${us.rows}" var="u">
-        	
                 <form class="form-horizontal" action="modifyUser" method="post">
                 		
                			 <div class="form-group">
-               			 	<label class="col-sm-2">Name:</label>
+               			 	<label class="col-sm-2">姓名:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="name" value="${u.u_name}" />                                                                                                  	      
+								<input type="text" class="form-control" name="name" value="${sessionScope.user.name}" />                                                                                                  	      
 							</div>
 						</div>
 						<div class="form-group">
-               			 	<label class="col-sm-2">Phone:</label>
+               			 	<label class="col-sm-2">电话:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="phone" value="${u.u_phone}" />                                                                                                  	     
+								<input type="text" class="form-control" name="phone" value="${sessionScope.user.phone}" />                                                                                                  	     
 							</div>
 						</div>
 						<div class="form-group" >
-               			 	<label class="col-sm-2">Email:</label>
+               			 	<label class="col-sm-2">邮箱:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="email" value="${u.u_email}" />                                                                                              	      
+								<input type="text" class="form-control" name="email" value="${sessionScope.user.email}" />                                                                                              	      
 							</div>
 						</div>
 						<div class="form-group" >
-               			 	<label class="col-sm-2">Age:</label>
+               			 	<label class="col-sm-2">年龄:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control"  name="age" value="${u.u_age}" />                                                                                          	    
+								<input type="text" class="form-control"  name="age" value="${sessionScope.user.age}" />                                                                                          	    
 							</div>
 						</div>
 						<div class="form-group" >
-               			 	<label class="col-sm-2">Sex:</label>
+               			 	<label class="col-sm-2">性别:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="sex" value="${u.u_sex}"/>                                                                                     	     
+								<input type="text" class="form-control" name="sex" value="${sessionScope.user.sex}"/>                                                                                     	     
 							</div>
 						</div>
 						<div class="form-group" >
-               			 	<label class="col-sm-2">Address:</label>
+               			 	<label class="col-sm-2">地址:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="address" value="${u.u_address}"/>                                                                                	     
+								<input type="text" class="form-control" name="address" value="${sessionScope.user.address}"/>                                                                                	     
 							</div>
 						</div>
 						<div class="form-group" >
-               			 	<label class="col-sm-2">IDCart:</label>
+               			 	<label class="col-sm-2">身份证:</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="idcart" value="${u.u_idcart}"/>                                                                          	      
+								<input type="text" class="form-control" name="idcart" value="${sessionScope.user.idcart}"/>                                                                          	      
 							</div>
 						</div>
 						
 						<div class="form-group" >
-               			 	<input type="submit" class="btn btn-primary" value="submit"  />
-               			 	<input type="reset" class="btn btn-primary" value="reset"/>
+               			 	<input type="submit" class="btn btn-primary" value="提交"  />
+               			 	<input type="reset" class="btn btn-primary" value="重置"/>
 						</div>
-              
-                    
- 
-                   
                  	  </form>
-                    </c:forEach>
-              
                   <%
                 if (session.getAttribute("modifyMessage") != null) {
                     out.println("<h1 style='color:red;'><center>" + session.getAttribute("modifyMessage") + "</center></h1>");

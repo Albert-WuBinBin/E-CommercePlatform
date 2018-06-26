@@ -10,74 +10,64 @@
 </head>
 <body>
 	<div class="showbody">
-		<h1 align="center">Personal Information</h1>
-		<sql:setDataSource var="user" driver="com.mysql.jdbc.Driver"
-			url="jdbc:mysql://localhost:3307/ECommercePlatform?serverTimezone=UTC" user="root"
-			password="123456" />
-		<sql:query dataSource="${user}" var="us">
-           		SELECT * FROM user  where u_id='<%=session.getAttribute("id")%>' 
-        </sql:query>
-
+		<h1 align="center">个人信息</h1>
 		<table
 			style="font-size: 28px; position: relative; left: 200px; top: 30px;">
-			<c:forEach items="${us.rows}" var="u">
 				<tr>
 					<td>ID:</td>
 					<td><center>
-							<c:out value="${u.u_id}" />
+							${sessionScope.user.id}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Name:</td>
+					<td>名字:</td>
 					<td><center>
-							<c:out value="${u.u_name}" />
+							${sessionScope.user.name}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Phone:</td>
+					<td>电话:</td>
 					<td><center>
-							<c:out value="${u.u_phone}" />
+							${sessionScope.user.phone}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Email:</td>
+					<td>邮箱:</td>
 					<td><center>
-							<c:out value="${u.u_email}" />
+							${sessionScope.user.email}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Age:</td>
+					<td>年龄:</td>
 					<td><center>
-							<c:out value="${u.u_age}" />
+							${sessionScope.user.age}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Sex:</td>
+					<td>性别:</td>
 					<td><center>
-							<c:out value="${u.u_sex}" />
+							${sessionScope.user.sex}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Address:</td>
+					<td>地址:</td>
 					<td><center>
-							<c:out value="${u.u_address}" />
+							${sessionScope.user.address}
 						</center></td>
 				</tr>
 				<tr>
-					<td>IDCart:</td>
+					<td>身份证:</td>
 					<td><center>
-							<c:out value="${u.u_idcart}" />
+							${sessionScope.user.idcart}
 						</center></td>
 				</tr>
 				<tr>
-					<td>Account Balance</td>
-					<td align="center">￥${u.u_money}</td>
+					<td>余额</td>
+					<td align="center">￥${sessionScope.user.money}
 				</tr>
 				<tr>
-					<td colspan="2"><a href="modifyPersonalInformation.jsp">Modify
-							Personal Information</a></td>
+					<td colspan="2"><a href="modifyPersonalInformation.jsp">修改个人信息</a></td>
 				</tr>
-			</c:forEach>
 
 		</table>
 	</div>

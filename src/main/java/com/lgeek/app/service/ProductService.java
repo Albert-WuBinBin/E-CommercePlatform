@@ -32,6 +32,9 @@ public class ProductService {
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
 	        pageNo=(pageNo - 1) * pageSize;
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        List<Product> pageList = productMapper.getPageList(pageNo, pageSize,searchtext);
 	        page.setList(pageList);
 	        return page;
@@ -42,6 +45,9 @@ public class ProductService {
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
 	        pageNo=(pageNo - 1) * pageSize;
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList1(pageNo, pageSize,max,searchtext));
 	        return page;
 	 }
@@ -50,11 +56,10 @@ public class ProductService {
 	        Page<Product> page = new Page<>(pageNo);
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
-	        System.err.println("max121"+max);
-	        System.err.println("minsad"+min);
-	        System.err.println("searchtext"+searchtext);
 	        pageNo=(pageNo - 1) * pageSize;
-	        
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList2(pageNo,pageSize,max,min,searchtext));
 	       
 	        return page;
@@ -64,8 +69,10 @@ public class ProductService {
 	        Page<Product> page = new Page<>(pageNo);
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
-	       
 	        pageNo=(pageNo - 1) * pageSize;
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList3(pageNo, pageSize,min,searchtext));
 	        return page;
 	 }
@@ -75,7 +82,9 @@ public class ProductService {
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
 	        pageNo=(pageNo - 1) * pageSize;
-	        System.out.println("searchtext"+searchtext);
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList4(pageNo, pageSize,ca_id,searchtext));
 	        return page;
 	}
@@ -85,6 +94,9 @@ public class ProductService {
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
 	        pageNo=(pageNo - 1) * pageSize;
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList5(pageNo, pageSize,ca_id,max,searchtext));
 	        return page;
 	}
@@ -94,6 +106,9 @@ public class ProductService {
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
 	        pageNo=(pageNo - 1) * pageSize;
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList6(pageNo, pageSize,ca_id,max,min,searchtext));
 	        return page;
 	}
@@ -103,6 +118,9 @@ public class ProductService {
 	        page.setTotalItemNumber(productMapper.getTotalBookNumber());
 	        pageNo = page.getPageNo();
 	        pageNo=(pageNo - 1) * pageSize;
+	        if(pageNo<0) {
+	        	pageNo=0;
+	        }
 	        page.setList(productMapper.getPageList7(pageNo, pageSize,ca_id,min,searchtext));
 	        return page;
 	}

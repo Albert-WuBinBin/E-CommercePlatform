@@ -75,8 +75,6 @@
 	<ul class="nav nav-tabs" role="tablist" id="myTab">
 		<li role="presentation" class="active"><a href="#shopmanage"
 			role="tab" data-toggle="tab">商品管理</a></li>
-		<li role="presentation"><a href="#ordermanage" role="tab"
-			data-toggle="tab">订单管理</a></li>
 
 	</ul>
 	<div class="tab-content">
